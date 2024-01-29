@@ -1,8 +1,6 @@
 package roleplay
 
 import (
-	"fmt"
-
 	"github.com/American-Made-Code/herd/pkg/external/gpt"
 )
 
@@ -28,9 +26,6 @@ func (m Message) toUserMessage() gpt.Message {
 
 func (m Message) fromGptMessage(source gpt.Message) Message {
 	m.Content = source.Content
-
-	fmt.Printf("\n m: %+v\n", m)
-
 	return m
 }
 
