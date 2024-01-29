@@ -1,6 +1,10 @@
 package roleplay
 
-import "github.com/American-Made-Code/herd/pkg/external/gpt"
+import (
+	"fmt"
+
+	"github.com/American-Made-Code/herd/pkg/external/gpt"
+)
 
 type Message struct {
 	Content     string
@@ -23,9 +27,10 @@ func (m Message) toUserMessage() gpt.Message {
 }
 
 func (m Message) fromGptMessage(source gpt.Message) Message {
-	m = Message{
-		Content: m.Content,
-	}
+	m.Content = source.Content
+
+	fmt.Printf("\n m: %+v\n", m)
+
 	return m
 }
 

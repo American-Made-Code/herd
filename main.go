@@ -38,6 +38,10 @@ func main() {
 	command := roleplay.CreateResponseMessageCommand{
 		AllParticipants:          []roleplay.Participant{first, second, third},
 		ResponseParticipantIndex: 1,
+		ResponseGpt: roleplay.Gpt{
+			Provider: gpt.OpenAi,
+			Model:    "gpt-3.5-turbo",
+		},
 		Messages: []roleplay.Message{
 			{
 				Content:     "Hello my friends, we are on an adventure to defeat a horde of goblins. What do you bring to the table?",
@@ -52,5 +56,6 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("\n%v", res)
+	fmt.Printf("\n MESSAGE:\n%v", res.GeneratedMessages[0].Content)
+	fmt.Printf("\n PARTICIPANT:\n%+v", res.GeneratedMessages[0].Participant)
 }

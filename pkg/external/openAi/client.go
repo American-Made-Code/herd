@@ -56,8 +56,6 @@ func (c *client) CreateChatCompletion(command CreateChatCompletionCommand) (*Cha
 		err = &errResponse.Error
 	}
 
-	fmt.Printf("RES:\n%+v\nERR:\n%+v\n", res, err)
-
 	return res, err
 }
 

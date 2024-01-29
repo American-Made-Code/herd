@@ -1,6 +1,8 @@
 package roleplay
 
-import "github.com/American-Made-Code/herd/pkg/external/gpt"
+import (
+	"github.com/American-Made-Code/herd/pkg/external/gpt"
+)
 
 type Response struct {
 	// A unique identifier from the gpt provider.
@@ -21,6 +23,7 @@ func (r Response) fromChatResponse(source *gpt.ChatResponse) Response {
 	var generatedMessages []Message
 
 	for _, choice := range source.Choices {
+
 		generatedMessage := Message{}.fromGptMessage(choice.Message)
 		generatedMessages = append(generatedMessages, generatedMessage)
 	}
