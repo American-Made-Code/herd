@@ -39,7 +39,7 @@ func main() {
 
 	var roleplayMessages []roleplay.Message
 	initialMessage := roleplay.Message{
-		Content:     "Hello my friends, we are on an adventure to defeat a horde of goblins. What do you bring to the table?",
+		Content:     "Hello my friends, we have been hired by the mayor of Neverwinter to investigate the disappearance of several children. Are you ready to embark on this adventure?",
 		Participant: first,
 	}
 	roleplayMessages = append(roleplayMessages, initialMessage)
@@ -57,17 +57,34 @@ func main() {
 	}
 
 	for _, index := range responseOrder {
+		fmt.Printf("\n=============================\n")
+		fmt.Printf("\nINDEX: %v \n", index)
+		fmt.Printf("\nCURRENT MESSAGES (%v) ----------\n", len(roleplayMessages))
+		for _, message := range roleplayMessages {
+			fmt.Printf("\n<%v> (\n%v\n)\n", message.Participant.Name, message.Content)
+		}
+		fmt.Printf("\n----------\n")
 		command.ResponseParticipantIndex = index
+		command.Messages = roleplayMessages
+
 		res, err := roleplayService.CreateResponseMessage(command)
 
 		if err != nil {
 			panic(err)
 		}
 
-		fmt.Printf("\n<%v> \t%v", res.GeneratedMessages[0].Participant.Name, res.GeneratedMessages[0].Content)
+		fmt.Printf("\nNEW MESSAGES (%v) ----------\n", len(res.GeneratedMessages))
+		for _, message := range res.GeneratedMessages {
+			fmt.Printf("\n<%v> (\n%v\n)\n", message.Participant.Name, message.Content)
+		}
+		fmt.Printf("\n----------\n")
 
 		roleplayMessages = append(roleplayMessages, res.GeneratedMessages[0])
 	}
 
-	fmt.Printf("\n\n DONE!")
+	fmt.Printf("\n FINAL: (%v) ----------\n", len(roleplayMessages))
+	for _, message := range roleplayMessages {
+		fmt.Printf("\n<%v> (\n%v\n)\n", message.Participant.Name, message.Content)
+	}
+	fmt.Printf("\n----------\n")
 }
