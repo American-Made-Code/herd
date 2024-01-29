@@ -6,7 +6,6 @@ import (
 )
 
 type CreateChatCommand struct {
-	Provider Provider
 	// A list of Messages comprising the conversation so far.
 	// [Example Python Code]
 	// (https://cookbook.openai.com/examples/how_to_format_inputs_to_chatgpt_models)

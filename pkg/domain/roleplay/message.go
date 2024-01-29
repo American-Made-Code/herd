@@ -4,14 +4,13 @@ import "github.com/American-Made-Code/herd/pkg/external/gpt"
 
 type Message struct {
 	Content     string
-	Participant RoleplayParticipant
+	Participant Participant
 }
 
 func (m Message) toAssistantMessage() gpt.Message {
 	return gpt.Message{
 		Content: m.Content,
 		Role:    gpt.Assistant,
-		Name:    &m.Participant.Name,
 	}
 }
 
@@ -21,4 +20,17 @@ func (m Message) toUserMessage() gpt.Message {
 		Role:    gpt.User,
 		Name:    &m.Participant.Name,
 	}
+}
+
+func (m Message) fromGptMessage(source gpt.Message) Message {
+	m = Message{
+		Content: m.Content,
+	}
+	return m
+}
+
+func (m Message) withParticipant(source Participant) Message {
+	m.Participant = source
+
+	return m
 }

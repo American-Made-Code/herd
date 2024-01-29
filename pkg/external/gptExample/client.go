@@ -2,7 +2,6 @@ package gptExample
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -15,8 +14,7 @@ type client struct {
 	r *resty.Client
 }
 
-func NewClient() Client {
-	apiKey := os.Getenv("OPENAI_API_KEY")
+func NewClient(apiKey string) Client {
 	httpClient := resty.New().
 		SetAuthToken(apiKey)
 
