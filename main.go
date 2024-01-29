@@ -8,7 +8,7 @@ import (
 	"github.com/American-Made-Code/herd/pkg/external/gpt"
 )
 
-// main is the entry point of the program.
+// This script only exists to test functionality locally. It is not used in the application.
 func main() {
 	apiKey := os.Getenv("OPENAI_API_KEY")
 	providers := []gpt.Auth{
