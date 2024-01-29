@@ -14,9 +14,22 @@ const (
 	GptExample
 )
 
-type Gateway interface {
+type GatewayApi interface {
 	CreateChatResponse(command CreateChatCommand) (*ChatResponse, error)
 }
+
+var providerMap = map[Provider]GatewayApi{
+	OpenAi:     openAiProvider{}.New(),
+	GptExample: exampleProvider{}.New(),
+}
+
+type gate map[Provider]GatewayApi
+
+func NewGate() gate {
+	return providerMap
+}
+
+////
 
 type gateway struct {
 	p          Provider
@@ -24,7 +37,7 @@ type gateway struct {
 	gptExample gptExample.Client
 }
 
-func NewClient(provider Provider) Gateway {
+func NewClient(provider Provider) GatewayApi {
 	switch provider {
 	case OpenAi:
 		return &gateway{

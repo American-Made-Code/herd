@@ -10,7 +10,7 @@ type Message struct {
 	Content string `json:"content"`
 	// The Role of the messages author, can be
 	// "system", "user", "assistant", or "tool".
-	Role string `json:"role"`
+	Role Role `json:"role"`
 	// An optional Name for the participant.
 	// Provides the model information to differentiate
 	// between participants of the same role.
@@ -20,7 +20,7 @@ type Message struct {
 func (model Message) fromOpenAiSchema(schema *openAi.Message) Message {
 	model = Message{
 		Content: schema.Content,
-		Role:    schema.Role,
+		Role:    RoleMap[schema.Role],
 		Name:    schema.Name,
 	}
 
@@ -30,7 +30,7 @@ func (model Message) fromOpenAiSchema(schema *openAi.Message) Message {
 func (model Message) toOpenAiSchema() openAi.Message {
 	schema := openAi.Message{
 		Content: model.Content,
-		Role:    model.Role,
+		Role:    model.Role.String(),
 		Name:    model.Name,
 	}
 
@@ -40,7 +40,7 @@ func (model Message) toOpenAiSchema() openAi.Message {
 func (model Message) fromExampleSchema(schema *gptExample.Message) Message {
 	model = Message{
 		Content: schema.Content,
-		Role:    schema.Role,
+		Role:    RoleMap[schema.Role],
 		Name:    schema.Name,
 	}
 
@@ -50,7 +50,7 @@ func (model Message) fromExampleSchema(schema *gptExample.Message) Message {
 func (model Message) toExampleSchema() gptExample.Message {
 	schema := gptExample.Message{
 		Content: model.Content,
-		Role:    model.Role,
+		Role:    model.Role.String(),
 		Name:    model.Name,
 	}
 
