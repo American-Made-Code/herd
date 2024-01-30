@@ -25,8 +25,8 @@ go get github.com/American-Made-Code/herd
 ### Using `go.mod`
 
 ~~~go.mod
-# Go Modules
-require github.com/American-Made-Code/herd v0.1.0 
+// Go Modules
+require github.com/American-Made-Code/herd v0.1.1
 ~~~
 
 ## Usage
