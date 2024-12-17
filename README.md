@@ -160,7 +160,7 @@ func (t testController) Post(c *gin.Context) {
 
 [docs-image]: https://img.shields.io/badge/Documentation-grey.svg?logo=github
 [docs-url]: https://github.com/American-Made-Code/herd
-[star-image]: https://img.shields.io/github/stars/camel-ai/camel?label=stars&logo=github&color=brightgreen
+[star-image]: https://img.shields.io/github/stars/American-Made-Code/herd?label=stars&logo=github&color=brightgreen
 [star-url]: https://github.com/American-Made-Code/herd/stargazers
 [package-license-image]: https://img.shields.io/github/license/American-Made-Code/herd
 [package-license-url]: https://github.com/American-Made-Code/herd/blob/main/LICENSE
